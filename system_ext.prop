@@ -1,0 +1,14 @@
+debug.audio.setting_ui_version_1_0=false
+debug.audio.setting_ui_version_2_0=true
+persist.nfc.debug_enabled=false
+persist.vendor.dpm.feature=11
+ro.audio.ihaladaptervendorextension_enabled=true
+ro.config.isolated_compilation_enabled=true
+ro.sys.thermal.ambient_temperature_estimation_on=ON
+ro.sys.thermal.incoming_call=ON
+ro.sys.thermal.notify_5g_notification=ON
+ro.sys.thermal.notify_chargeoff=ON
+ro.sys.thermal.notify_iec_notification=ON
+ro.sys.thermal.notify_not_auto_dismiss=ON
+ro.telephony.sim_slots.count=2
+telephony.active_modems.max_count=2
