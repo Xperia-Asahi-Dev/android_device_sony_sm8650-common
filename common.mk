@@ -35,7 +35,6 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.3-impl \
     audio.bluetooth.default \
     audio.r_submix.default \
-    audio.usbv2.default \
     libagm_compress_plugin \
     libagm_mixer_plugin \
     libagm_pcm_plugin \
@@ -68,9 +67,6 @@ PRODUCT_COPY_FILES += \
     $(CONFIG_HAL_SRC_DIR)/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml \
     $(CONFIG_PAL_SRC_DIR)/Hapticsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/Hapticsconfig.xml \
     $(CONFIG_PAL_SRC_DIR)/usecaseKvManager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usecaseKvManager.xml
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/usbv2_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usbv2_audio_policy_configuration.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
@@ -186,23 +182,15 @@ PRODUCT_PACKAGES += \
     fstab.qcom.vendor_ramdisk \
     init.class_main.sh \
     init.kernel.post_boot.sh \
-    init.kernel.post_boot-kalama.sh \
+    init.kernel.post_boot-pineapple.sh \
     init.qcom.early_boot.sh \
-    init.qcom.msim.sh \
     init.qcom.rc \
     init.qcom.sh \
     init.qti.kernel.rc \
-    init.recovery.qcom.rc \
     init.target.rc \
     init.sony-device-common.rc \
     init.sony-platform.rc \
-    init.sony.rc \
-    ueventd.qcom.rc \
-    ueventd.sony.rc
-
-# Kernel
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/system_dlkm.modules.blocklist:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
+    ueventd.qcom.rc
 
 # Keymint
 PRODUCT_PACKAGES += \
@@ -215,6 +203,10 @@ PRODUCT_COPY_FILES += \
 # Lineage Health
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
+
+$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/battchg_ext/smart_charging_interruption)
+$(call soong_config_set,lineage_health,charging_control_charging_enabled,0)
+$(call soong_config_set,lineage_health,charging_control_charging_disabled,1)
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -327,9 +319,6 @@ PRODUCT_PACKAGES += \
     QtiTelephonyCompat \
     telephony-ext
 
-PRODUCT_PACKAGES += \
-    qcrilNrDb_vendor
-
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
@@ -339,8 +328,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
     frameworks/native/data/etc/android.hardware.telephony.mbms.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.mbms.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
-    $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml \
-    $(LOCAL_PATH)/configs/privapp-permissions-euiccgoogle.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-euiccgoogle.xml
+    $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml
@@ -406,7 +394,8 @@ DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := \
     $(AUDIO_HAL_DIR)/configs/common/manifest_non_qmaa.xml \
     $(AUDIO_HAL_DIR)/configs/common/manifest_non_qmaa_extn.xml \
-    $(LOCAL_PATH)/manifest_pineapple.xml
+    $(LOCAL_PATH)/manifest_pineapple.xml \
+    $(LOCAL_PATH)/network_manifest.xml
 
 # WiFi
 PRODUCT_PACKAGES += \

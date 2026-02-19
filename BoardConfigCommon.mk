@@ -79,8 +79,10 @@ BOARD_INIT_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_INIT_ARGS += --header_version $(BOARD_INIT_BOOT_HEADER_VERSION)
 
 # Kernel
+BOARD_KERNEL_CMDLINE := console=ttyMSM0 earlycon
+
 BOARD_BOOTCONFIG := \
-    androidboot.console=0 \
+    androidboot.console=ttyMSM0 \
     androidboot.hardware=qcom \
     androidboot.hypervisor.protected_vm.supported=true \
     androidboot.load_modules_parallel=true \
@@ -142,6 +144,7 @@ TARGET_KERNEL_EXT_MODULES := \
     qcom/opensource/mm-sys-kernel/ubwcp \
     nxp/opensource/driver \
     cirrus/kernel-modules/cs35l45/sound/soc/codecs \
+    cirrus/kernel-modules/cs40l25/drivers/misc \
     cirrus/kernel-modules/cs40l25/sound/soc/codecs
 
 # cirrus shit to be checked
@@ -165,17 +168,20 @@ TARGET_KERNEL_EXT_MODULES += \
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := pineapple
 
+# Lineage Touch HAL
+$(call soong_config_set,sony_touch,panel,lxs_ts)
+
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
 BOARD_PRODUCTIMAGE_MINIMAL_PARTITION_RESERVED_SIZE := false
 -include vendor/lineage/config/BoardConfigReservedSize.mk
-BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
+BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_DTBOIMG_PARTITION_SIZE := 25165824
 BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 233523179520
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 201326592
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4

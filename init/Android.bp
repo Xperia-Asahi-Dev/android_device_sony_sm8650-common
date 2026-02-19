@@ -26,7 +26,7 @@ prebuilt_etc {
 
 prebuilt_etc {
     name: "init.sony-device-common.rc",
-    src: "init.sony-device-common.rcc",
+    src: "init.sony-device-common.rc",
     sub_dir: "init",
     device_specific: true,
 }

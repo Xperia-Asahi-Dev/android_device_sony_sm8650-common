@@ -66,7 +66,6 @@ qti-fixed-regulator.ko
 qpnp-amoled-regulator.ko
 qti-ocp-notifier.ko
 hvc_gunyah.ko
-msm_geni_serial.ko
 rdbg.ko
 qcom_iommu_debug.ko
 drm_dp_aux_bus.ko
@@ -265,7 +264,6 @@ rdtags.ko
 lxs_touchscreen.ko
 btpower.ko
 bt_fm_slim.ko
-radio-i2c-rtc6226-qca.ko
 qca_cld3_kiwi_v2.ko
 cnss2.ko
 icnss2.ko
@@ -346,7 +344,6 @@ wcd939x_dlkm.ko
 wcd939x_slave_dlkm.ko
 btpower.ko
 bt_fm_slim.ko
-radio-i2c-rtc6226-qca.ko
 camera.ko
 gsim.ko
 ipam.ko
@@ -366,7 +363,6 @@ msm_drm.ko
 frpc-adsprpc.ko
 cdsp-loader.ko
 msm-eva.ko
-qbt_handler.ko
 msm_ext_display.ko
 sync_fence.ko
 msm_hw_fence.ko
